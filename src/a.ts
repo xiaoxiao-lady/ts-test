@@ -110,33 +110,64 @@
 // 私有属性：private，只能在类内部，不能在子类里面和类外部访问
 // 被保护的属性：protect，能够在类内部，子类里面访问，但是不能在类外部访问
 // 共有属性：public， 能够在类内部，子类里面，以及类外部都能访问
-class Person{
-  // 成员属性 
-  public name:string;  
-  // protected name1:string
-  // public name2:string
+// class Person{
+//   // 成员属性 
+//   public name:string;  
+//   // protected name1:string
+//   // public name2:string
 
-  //构造函数，创建实例
-   constructor(name:string){   
-     this.name=name  //类内部可以访问
-   }
-  //  成员方法
-   getName():string{
-     return this.name
-   }
-}
-class Web extends Person{
+//   //构造函数，创建实例
+//    constructor(name:string){   
+//      this.name=name  //类内部可以访问
+//    }
+//   //  成员方法
+//    getName():string{
+//      return this.name
+//    }
+// }
+// class Web extends Person{
+//   constructor(name:string){
+//     super(name)  //调用父类的构造函数,传父类需要的参数
+//   }
+//   run():string{
+//     return this.name  //子类中也可以访问
+//   }
+// }
+// var w=new Web("王金玉")
+// alert(w.name)   //类的外部也能够访问
+// 【抽象类】
+
+abstract class Animal{
+  public name:string
+
   constructor(name:string){
-    super(name)  //调用父类的构造函数,传父类需要的参数
+    this.name=name
   }
-  run():string{
-    return this.name  //子类中也可以访问
+  abstract eat():any;
+}
+// const a=new Animal();//错误的写法，抽象类不能实例化，只能是作为各个子类的基类
+class Dog extends Animal{
+  constructor(name:string){
+    super(name)
+  }
+  eat():void{  //基类的（父类）抽象方法必须在子类中存在
+    console.log(this.name+"喜欢吃骨头")
+
   }
 }
-var w=new Web("王金玉")
-alert(w.name)   //类的外部也能够访问
+class Cat extends Animal{
+  constructor(name:string){
+    super(name)
+  }
+  eat():void{  //基类的（父类）抽象方法必须在子类中存在
+    console.log(this.name+"喜欢吃鱼")
 
-
+  }
+}
+const d=new Dog("小花狗")
+d.eat()
+const c=new Cat("小花猫")
+c.eat()
 
 
 
