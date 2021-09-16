@@ -137,38 +137,84 @@
 // alert(w.name)   //类的外部也能够访问
 // 【抽象类】
 
-abstract class Animal{
-  public name:string
+// abstract class Animal{
+//   public name:string
 
+//   constructor(name:string){
+//     this.name=name
+//   }
+//   abstract eat():any;
+// }
+// // const a=new Animal();//错误的写法，抽象类不能实例化，只能是作为各个子类的基类
+// class Dog extends Animal{
+//   constructor(name:string){
+//     super(name)
+//   }
+//   eat():void{  //基类的（父类）抽象方法必须在子类中存在
+//     console.log(this.name+"喜欢吃骨头")
+
+//   }
+// }
+// class Cat extends Animal{
+//   constructor(name:string){
+//     super(name)
+//   }
+//   eat():void{  //基类的（父类）抽象方法必须在子类中存在
+//     console.log(this.name+"喜欢吃鱼")
+
+//   }
+// }
+// const d=new Dog("小花狗")
+// d.eat()
+// const c=new Cat("小花猫")
+// c.eat()
+// interface fullName{
+//   firstName:string;
+//   secondName?:string; //这里必须是；不能是，
+// }
+// function Person(name:fullName):void{
+//   console.log(name.firstName+"--"+name.secondName)
+// }
+// function Person1(name:fullName):void{
+//   console.log(name.firstName+"$$"+name.secondName)
+// }
+// let obj={
+//   firstName:"张",
+//   secondName:"三"
+// }
+// Person(obj)
+// let obj1={
+//   firstName:"李",
+ 
+// }
+// Person1(obj1)
+
+interface Animal{
+  name:string;
+  eat(str:string):void
+}
+class Dog implements Animal{
+  name:string
   constructor(name:string){
     this.name=name
   }
-  abstract eat():any;
+  eat(){
+    console.log(this.name+"吃零食")
+  }
 }
-// const a=new Animal();//错误的写法，抽象类不能实例化，只能是作为各个子类的基类
-class Dog extends Animal{
+const dog=new Dog("小狗")
+dog.eat()
+class Cat implements Animal{
+  name:string
   constructor(name:string){
-    super(name)
+    this.name=name
   }
-  eat():void{  //基类的（父类）抽象方法必须在子类中存在
-    console.log(this.name+"喜欢吃骨头")
-
-  }
-}
-class Cat extends Animal{
-  constructor(name:string){
-    super(name)
-  }
-  eat():void{  //基类的（父类）抽象方法必须在子类中存在
-    console.log(this.name+"喜欢吃鱼")
-
+  eat(food:string){
+    console.log(this.name+"吃"+food)
   }
 }
-const d=new Dog("小花狗")
-d.eat()
-const c=new Cat("小花猫")
-c.eat()
-
+const cat=new Cat("小猫")
+cat.eat("鱼")
 
 
 
