@@ -189,32 +189,99 @@
 // }
 // Person1(obj1)
 
-interface Animal{
-  name:string;
-  eat(str:string):void
-}
-class Dog implements Animal{
-  name:string
-  constructor(name:string){
-    this.name=name
-  }
-  eat(){
-    console.log(this.name+"吃零食")
-  }
-}
-const dog=new Dog("小狗")
-dog.eat()
-class Cat implements Animal{
-  name:string
-  constructor(name:string){
-    this.name=name
-  }
-  eat(food:string){
-    console.log(this.name+"吃"+food)
-  }
-}
-const cat=new Cat("小猫")
-cat.eat("鱼")
+// interface Animal{
+//   name:string;
+//   eat(str:string):void
+// }
+// class Dog implements Animal{
+//   name:string
+//   constructor(name:string){
+//     this.name=name
+//   }
+//   eat(){
+//     console.log(this.name+"吃零食")
+//   }//接口里面的属性和方法在类中必须有，没有的话会报错
+// }
+// const dog=new Dog("小狗")
+// dog.eat()
+// class Cat implements Animal{
+//   name:string
+//   constructor(name:string){
+//     this.name=name
+//   }
+//   eat(food:string){
+//     console.log(this.name+"吃"+food)
+//   }
+// }
+// const cat=new Cat("小猫")
+// cat.eat("鱼")
 
-
-
+// 【接口继承接口】
+// interface Animal{
+//   name:string;
+//   eat():void
+// }
+// interface Person extends Animal{
+//   work():void
+// }//继承接口的接口
+// class Boy implements Person {
+//   name:string
+//   constructor(name:string){
+//     this.name=name
+//   }
+//   eat():void{
+//     console.log(this.name+"喜欢吃肉肉")
+    
+//   }//必须包含eat和work两个方法，
+//   work():void{
+//     console.log( this.name+"不喜欢工作")
+   
+//   }
+// }
+// const boy=new Boy("小红")
+// boy.eat()
+// 泛型
+// 泛型（Generics）是允许同一个函数接受不同类型参数的一种模板。相比于使用 any 类型，使用泛型来创建可复用的组件要更好，因为泛型会保留参数类型。
+// 想要实现返回不同的类型
+// 方案一
+// function getData(value:string):string{
+//   return value
+// }
+// function getData1(value:number):number{
+//   return value
+// }
+// 方案二
+// function getData(value:any):any{
+//   return value
+// }//但是any放弃了类型检查，想要实现的是传入和返回的类型一致，any是不可以的
+// 方案三
+// function getData<T>(value:T):T{
+//   return value
+// }
+// getData<number>(123) //传入什么返回什么类型
+// function getData<T>(value:T):number{
+//   return 123
+// }
+// getData<number>(123) //传入不同的类型
+// class Instance {
+//   value:string
+//   constructor(value:string){
+//      this.value=value
+//   }
+//   print():void{
+//     console.log(this.value)
+//   }
+// }
+const i=new Instance(123);
+console.log(i)
+class Instance<T> {
+  value:T
+  constructor(value:T){
+     this.value=value
+  }
+  print():void{
+    console.log(this.value)
+  }
+}
+const i=new Instance<number>(123);
+console.log(i)
