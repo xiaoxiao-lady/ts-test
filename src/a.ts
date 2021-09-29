@@ -1,6 +1,6 @@
 /*
  * @Description: 
- * @FilePath: \ts-test\src\a.ts
+ * @FilePath: \TypeScript\ts-test\src\a.ts
  */
 // let value:unknown;
 // value=true
@@ -272,16 +272,17 @@
 //     console.log(this.value)
 //   }
 // }
-const i=new Instance(123);
-console.log(i)
-class Instance<T> {
-  value:T
-  constructor(value:T){
-     this.value=value
-  }
-  print():void{
-    console.log(this.value)
-  }
-}
-const i=new Instance<number>(123);
-console.log(i)
+// const i=new Instance(123);
+// console.log(i)
+// class Instance<T> {
+//   value:T
+//   constructor(value:T){
+//      this.value=value
+//   }
+//   print():void{
+//     console.log(this.value)
+//   }
+// }
+// const i=new Instance<number>(123);
+// console.log(i)
+// 模块
