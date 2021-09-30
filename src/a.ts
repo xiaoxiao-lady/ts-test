@@ -185,7 +185,7 @@
 // Person(obj)
 // let obj1={
 //   firstName:"李",
- 
+
 // }
 // Person1(obj1)
 
@@ -231,11 +231,11 @@
 //   }
 //   eat():void{
 //     console.log(this.name+"喜欢吃肉肉")
-    
+
 //   }//必须包含eat和work两个方法，
 //   work():void{
 //     console.log( this.name+"不喜欢工作")
-   
+
 //   }
 // }
 // const boy=new Boy("小红")
@@ -254,7 +254,7 @@
 // function getData(value:any):any{
 //   return value
 // }//但是any放弃了类型检查，想要实现的是传入和返回的类型一致，any是不可以的
-// 方案三
+// 方案三：泛型，类型用T表示
 // function getData<T>(value:T):T{
 //   return value
 // }
@@ -272,16 +272,41 @@
 //     console.log(this.value)
 //   }
 // }
-const i=new Instance(123);
-console.log(i)
-class Instance<T> {
-  value:T
-  constructor(value:T){
-     this.value=value
-  }
-  print():void{
-    console.log(this.value)
-  }
+// const i=new Instance(123);
+// console.log(i)
+// 泛型类
+// class Instance<T> {
+//   value: T
+//   constructor(value: T) {
+//     this.value = value
+//   }
+//   print(): void {
+//     console.log(this.value)
+//   }
+// }
+// const i = new Instance<number>(123);
+// console.log(i)
+// 泛型接口
+// interface configFn{
+//  <T>(value:T):T;
+// }
+// var getData:configFn=function<T>(value:T):T{
+//   alert(value)
+//  return value
+// }
+// getData<string>("haha");
+// getData<number>(123);
+// interface configFn{
+//   value:string;
+// }
+// function getData(value:configFn):configFn{
+//   return value
+// }
+interface configFn<T>{
+  (value:T):T
 }
-const i=new Instance<number>(123);
-console.log(i)
+function getData<T>(value:T):T{
+  return value
+}
+  const myGetData:configFn<string>=getData
+  myGetData("20")
