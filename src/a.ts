@@ -1,6 +1,6 @@
 /*
  * @Description: 
- * @FilePath: \ts-test\src\a.ts
+ * @FilePath: \TypeScript\ts-test\src\a.ts
  */
 // let value:unknown;
 // value=true
@@ -274,39 +274,15 @@
 // }
 // const i=new Instance(123);
 // console.log(i)
-// 泛型类
 // class Instance<T> {
-//   value: T
-//   constructor(value: T) {
-//     this.value = value
+//   value:T
+//   constructor(value:T){
+//      this.value=value
 //   }
-//   print(): void {
+//   print():void{
 //     console.log(this.value)
 //   }
 // }
-// const i = new Instance<number>(123);
+// const i=new Instance<number>(123);
 // console.log(i)
-// 泛型接口
-// interface configFn{
-//  <T>(value:T):T;
-// }
-// var getData:configFn=function<T>(value:T):T{
-//   alert(value)
-//  return value
-// }
-// getData<string>("haha");
-// getData<number>(123);
-// interface configFn{
-//   value:string;
-// }
-// function getData(value:configFn):configFn{
-//   return value
-// }
-interface configFn<T>{
-  (value:T):T
-}
-function getData<T>(value:T):T{
-  return value
-}
-  const myGetData:configFn<string>=getData
-  myGetData("20")
+// 模块
