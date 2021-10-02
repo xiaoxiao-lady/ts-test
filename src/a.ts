@@ -286,3 +286,45 @@
 // const i=new Instance<number>(123);
 // console.log(i)
 // 模块
+// 装饰器-普通装饰器
+// function Decorator(params:any){
+// // params是当前类，这里就是离装饰器下面最近的class
+// // params需要设置类型any
+// params.prototype.urlHttp="xxx"
+// params.prototype.SetUrlHttp=function (){
+//   console.log("我是设置的方法")
+// }
+// }
+
+// @Decorator
+
+// class httpClient{
+//   constructor (){
+//    console.log()
+//   }
+//   getData(){
+
+//   }
+// }
+// 装饰器-工厂装饰器
+function Decorator(params:string){
+  // params是当前类，这里就是离装饰器下面最近的class
+  // params需要设置类型any
+  return function(target:any){
+    target.prototype.urlHttp=params
+    target.prototype.SetUrlHttp=function (){
+      console.log("我是设置的方法")
+    }
+  }
+}
+  
+  @Decorator("http://www.baidu.com")
+  
+  class httpClient{
+    constructor (){
+     console.log()
+    }
+    getData(){
+  
+    }
+  }
