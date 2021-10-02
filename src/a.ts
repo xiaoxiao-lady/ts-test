@@ -185,7 +185,7 @@
 // Person(obj)
 // let obj1={
 //   firstName:"李",
- 
+
 // }
 // Person1(obj1)
 
@@ -231,11 +231,11 @@
 //   }
 //   eat():void{
 //     console.log(this.name+"喜欢吃肉肉")
-    
+
 //   }//必须包含eat和work两个方法，
 //   work():void{
 //     console.log( this.name+"不喜欢工作")
-   
+
 //   }
 // }
 // const boy=new Boy("小红")
@@ -254,7 +254,7 @@
 // function getData(value:any):any{
 //   return value
 // }//但是any放弃了类型检查，想要实现的是传入和返回的类型一致，any是不可以的
-// 方案三
+// 方案三：泛型，类型用T表示
 // function getData<T>(value:T):T{
 //   return value
 // }
