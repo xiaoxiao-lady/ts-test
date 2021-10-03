@@ -307,24 +307,74 @@
 //   }
 // }
 // 装饰器-工厂装饰器
-function Decorator(params:string){
-  // params是当前类，这里就是离装饰器下面最近的class
-  // params需要设置类型any
-  return function(target:any){
-    target.prototype.urlHttp=params
-    target.prototype.SetUrlHttp=function (){
-      console.log("我是设置的方法")
-    }
+// function Decorator(params:string){
+//   // params是当前类，这里就是离装饰器下面最近的class
+//   // params需要设置类型any
+//   return function(target:any){
+//     target.prototype.urlHttp=params
+//     target.prototype.SetUrlHttp=function (){
+//       console.log("我是设置的方法")
+//     }
+//   }
+// }
+  
+//   @Decorator("http://www.baidu.com")
+  
+//   class httpClient{
+//     constructor (){
+//      console.log()
+//     }
+//     getData(){
+  
+//     }
+//   }
+// 属性装饰器
+
+// function proDecorator(params:string){
+//  return function(target:any,attr:any){
+//   //  属性装饰器的两个参数
+//   target[attr]=params
+//  }
+// }
+// class httpClient{
+//     @proDecorator("http://www.baidu.com")
+//     public url:string|undefined
+//     constructor (){
+//     }
+//     getData(){  
+//       console.log(this.url)
+//     }
+//   }
+//   var http=new httpClient()
+//   http.getData()
+// 方法装饰器
+function methodDecorator(params:string){
+  return function(target:any,methodName:any,desc:any){
+   //  方法饰器的三个参数 target是当前类的实例，methodName是方法名称，desc是属性描述符
+   console.log(desc)//desc.value就是方法
+   console.log(target[methodName])
+   console.log(methodName)
+   const oMethod=desc.value;
+   desc.value=function(...args:any[]){
+    // 需求：加工方法，把所有的参数转化为字符串
+    args= args.map(ele=>String(ele))
+   console.log(args)
+
+     const res=oMethod.apply(this,args)
+     return res
+   }
+
   }
-}
-  
-  @Decorator("http://www.baidu.com")
-  
-  class httpClient{
-    constructor (){
-     console.log()
-    }
-    getData(){
-  
-    }
-  }
+ }
+ class httpClient{
+     public url:string|undefined
+     constructor (){
+     }
+     @methodDecorator("http://www.baidu.com")
+     getData(...args:any[]){  
+       console.log(args)
+       console.log("我是没有加工之前的方法")
+     }
+   }
+   var http=new httpClient()
+   http.getData(123,"xxx")
